@@ -2,6 +2,7 @@ package ssvv.lab1;
 
 import domain.Student;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import repository.NotaXMLRepo;
@@ -39,8 +40,8 @@ public class AppTest
         service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
     }
 
-    @AfterAll
-    public static void clearRepo() {
+    @AfterEach
+    public void clearRepo() {
         service.deleteStudent("999");
         service.deleteStudent("998");
         service.deleteStudent("997");
@@ -62,6 +63,7 @@ public class AppTest
     public void testAddStudent2() {
         // Duplicate
         Student student = new Student("999", "boro", 931, "boro@yahoo.com");
+        service.addStudent(student);
         assertEquals(service.addStudent(student), student);
     }
 
