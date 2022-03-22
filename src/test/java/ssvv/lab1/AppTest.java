@@ -1,7 +1,9 @@
 package ssvv.lab1;
 
 import domain.Student;
-import org.junit.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import repository.NotaXMLRepo;
 import repository.StudentXMLRepo;
 import repository.TemaXMLRepo;
@@ -11,8 +13,7 @@ import validation.StudentValidator;
 import validation.TemaValidator;
 import validation.ValidationException;
 
-import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit test for simple App.
@@ -21,7 +22,7 @@ public class AppTest
 {
     static Service service;
 
-    @BeforeClass
+    @BeforeAll
     public static void initialize() {
         StudentValidator studentValidator = new StudentValidator();
         String studenti = "fisiere/Studenti.xml";
@@ -38,7 +39,7 @@ public class AppTest
         service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
     }
 
-    @AfterClass
+    @AfterAll
     public static void clearRepo() {
         service.deleteStudent("999");
         service.deleteStudent("998");
