@@ -62,7 +62,7 @@ public class AppTest
     public void testAddStudent2() {
         // Duplicate
         Student student = new Student("999", "boro", 931, "boro@yahoo.com");
-        assertNotNull(service.addStudent(student));
+        assertEquals(service.addStudent(student), student);
     }
 
     @Test
