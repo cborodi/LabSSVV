@@ -55,14 +55,14 @@ public class AppTest
 
     @Test
     public void testAddStudent1() {
-        Student student = new Student("999", "boro", 931, "boro@yahoo.com");
+        Student student = new Student("999", "student", 931, "student@yahoo.com");
         assertNull(service.addStudent(student));
     }
 
     @Test
     public void testAddStudent2() {
         // Duplicate
-        Student student = new Student("999", "boro", 931, "boro@yahoo.com");
+        Student student = new Student("999", "student", 931, "student@yahoo.com");
         service.addStudent(student);
         assertEquals(service.addStudent(student), student);
     }
@@ -70,7 +70,7 @@ public class AppTest
     @Test
     public void testAddStudent3() {
         // Validation Error
-        Student student = new Student("", "boro", 931, "boro@yahoo.com");
+        Student student = new Student("", "student", 931, "student@yahoo.com");
         Exception exception = assertThrows(ValidationException.class, ()->{service.addStudent(student);});
 
         String expectedMessage = "Id incorect!";
@@ -82,7 +82,7 @@ public class AppTest
     @Test
     public void testAddStudent4() {
         // Validation Error
-        Student student = new Student("999", "", 931, "boro@yahoo.com");
+        Student student = new Student("999", "", 931, "student@yahoo.com");
         Exception exception = assertThrows(ValidationException.class, ()->{service.addStudent(student);});
 
         String expectedMessage = "Nume incorect!";
@@ -94,7 +94,7 @@ public class AppTest
     @Test
     public void testAddStudent5() {
         // Validation Error
-        Student student = new Student("999", "boro", -1, "boro@yahoo.com");
+        Student student = new Student("999", "student", -1, "student@yahoo.com");
         Exception exception = assertThrows(ValidationException.class, ()->{service.addStudent(student);});
 
         String expectedMessage = "Grupa incorecta!";
@@ -106,7 +106,7 @@ public class AppTest
     @Test
     public void testAddStudent6() {
         // Validation Error
-        Student student = new Student("999", "boro", 931, null);
+        Student student = new Student("999", "student", 931, null);
         Exception exception = assertThrows(ValidationException.class, ()->{service.addStudent(student);});
 
         String expectedMessage = "Email incorect!";
@@ -118,7 +118,7 @@ public class AppTest
     @Test
     public void testAddStudent7() {
         // Validation Error
-        Student student = new Student("999", null, 931, "boro@yahoo.com");
+        Student student = new Student("999", null, 931, "student@yahoo.com");
         Exception exception = assertThrows(ValidationException.class, ()->{service.addStudent(student);});
 
         String expectedMessage = "Nume incorect!";
@@ -130,7 +130,7 @@ public class AppTest
     @Test
     public void testAddStudent8() {
         // Validation Error
-        Student student = new Student("999", "boro", 931, "");
+        Student student = new Student("999", "student", 931, "");
         Exception exception = assertThrows(ValidationException.class, ()->{service.addStudent(student);});
 
         String expectedMessage = "Email incorect!";
@@ -142,14 +142,14 @@ public class AppTest
     @Test
     public void testAddStudent9() {
         // BVA
-        Student student = new Student("998", "boro", 0, "boro@yahoo.com");
+        Student student = new Student("998", "student", 0, "student@yahoo.com");
         assertNull(service.addStudent(student));
     }
 
     @Test
     public void testAddStudent10() {
         // BVA
-        Student student = new Student("997", "boro", 1, "boro@yahoo.com");
+        Student student = new Student("997", "student", 1, "student@yahoo.com");
         assertNull(service.addStudent(student));
     }
 
