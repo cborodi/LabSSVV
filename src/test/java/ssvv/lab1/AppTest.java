@@ -153,4 +153,78 @@ public class AppTest
         assertNull(service.addStudent(student));
     }
 
+    @Test
+    public void testAddStudent11() {
+        // BVA
+        Student student = new Student("997", "student", Integer.MAX_VALUE, "student@yahoo.com");
+        assertNull(service.addStudent(student));
+    }
+
+    @Test
+    public void testAddStudent12() {
+        // BVA
+        Student student = new Student("997", "student", Integer.MAX_VALUE -1, "student@yahoo.com");
+        assertNull(service.addStudent(student));
+    }
+
+    @Test
+    public void testAddStudent13() {
+        // BVA
+        Student student = new Student("997", "student", Integer.MAX_VALUE + 1, "student@yahoo.com");
+        Exception exception = assertThrows(ValidationException.class, ()->{service.addStudent(student);});
+
+        String expectedMessage = "Grupa incorecta!";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void testAddStudent14() {
+        // BVA
+        Student student = new Student("997", "student", 931, "@");
+        Exception exception = assertThrows(ValidationException.class, ()->{service.addStudent(student);});
+
+        String expectedMessage = "Email incorect!";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void testAddStudent15() {
+        // BVA
+        Student student = new Student("997", "student", 931, "@asd");
+        Exception exception = assertThrows(ValidationException.class, ()->{service.addStudent(student);});
+
+        String expectedMessage = "Email incorect!";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void testAddStudent16() {
+        // BVA
+        Student student = new Student("997", "student", 931, "asd@");
+        Exception exception = assertThrows(ValidationException.class, ()->{service.addStudent(student);});
+
+        String expectedMessage = "Email incorect!";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void testAddStudent17() {
+        // BVA
+        Student student = new Student("997", "student#", 931, "student@yahoo.com");
+        Exception exception = assertThrows(ValidationException.class, ()->{service.addStudent(student);});
+
+        String expectedMessage = "Nume incorect!";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
 }

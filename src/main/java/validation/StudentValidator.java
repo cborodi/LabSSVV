@@ -32,5 +32,17 @@ public class StudentValidator implements Validator<Student> {
         if(entity.getEmail().equals("")){
             throw new ValidationException("Email incorect!");
         }
+        if(entity.getEmail().equals("@")){
+            throw new ValidationException("Email incorect!");
+        }
+        if(entity.getEmail().matches("^@.*")){
+            throw new ValidationException("Email incorect!");
+        }
+        if(entity.getEmail().matches(".*@$")){
+            throw new ValidationException("Email incorect!");
+        }
+        if(entity.getNume().matches("(.*(!|@|#|%|&|>|<)+.*)")){
+            throw new ValidationException("Nume incorect!");
+        }
     }
 }
