@@ -1,0 +1,6 @@
+
+Tema: id2
+Nota: 6.5
+Predata in saptamana: 6
+Deadline: 5
+Feedback: sss

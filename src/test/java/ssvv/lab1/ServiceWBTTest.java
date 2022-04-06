@@ -1,12 +1,15 @@
 package ssvv.lab1;
+import domain.Nota;
 import domain.Student;
 import domain.Tema;
 import org.junit.jupiter.api.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import repository.NotaXMLRepo;
 import repository.StudentXMLRepo;
 import repository.TemaXMLRepo;
 import service.Service;
+import validation.NotaValidator;
 import validation.StudentValidator;
 import validation.TemaValidator;
 import validation.ValidationException;
@@ -17,6 +20,8 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 public class ServiceWBTTest {
 
@@ -194,6 +199,60 @@ public class ServiceWBTTest {
             Assertions.fail();
         }
         catch (ValidationException e){
+            Assertions.assertTrue(true);
+        }
+        catch (Exception e){
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    public void tc8_addGrade(){
+        Nota nota = new Nota("2", "1", "1", 11, null);
+        String filenameStudent = "src/test/java/fisiere_test/Studenti.xml";
+        String filenameNote = "src/test/java/fisiere_test/Note.xml";
+        String filenameTeme = "src/test/java/fisiere_test/Teme.xml";
+
+        StudentXMLRepo studentXMLRepo = new StudentXMLRepo(filenameStudent);
+        NotaXMLRepo notaXMLRepo = new NotaXMLRepo(filenameNote);
+        TemaXMLRepo temaXMLRepo = new TemaXMLRepo(filenameTeme);
+        TemaValidator temaValidator = new TemaValidator();
+        StudentValidator studentValidator = new StudentValidator();
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepo, temaXMLRepo);
+        Service service = new Service(studentXMLRepo, studentValidator, temaXMLRepo, temaValidator, notaXMLRepo, notaValidator);
+
+        try{
+            service.addNota(nota, "sss");
+        }
+        catch (ValidationException e){
+            Assertions.assertTrue(true);
+        }
+        catch (Exception e){
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    public void tc9_integration(){
+        Tema tema = new Tema("id2", "descr", 5, 14);
+        Student student = new Student("987", "student33", 937, "student@yahoo.com");
+        Nota nota = new Nota("4", "987", "id2", 9, LocalDate.now());
+        String filenameStudent = "src/test/java/fisiere_test/Studenti.xml";
+        String filenameNote = "src/test/java/fisiere_test/Note.xml";
+        String filenameTeme = "src/test/java/fisiere_test/Teme.xml";
+
+        StudentXMLRepo studentXMLRepo = new StudentXMLRepo(filenameStudent);
+        NotaXMLRepo notaXMLRepo = new NotaXMLRepo(filenameNote);
+        TemaXMLRepo temaXMLRepo = new TemaXMLRepo(filenameTeme);
+        TemaValidator temaValidator = new TemaValidator();
+        StudentValidator studentValidator = new StudentValidator();
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepo, temaXMLRepo);
+        Service service = new Service(studentXMLRepo, studentValidator, temaXMLRepo, temaValidator, notaXMLRepo, notaValidator);
+
+        try{
+            service.addTema(tema);
+            service.addStudent(student);
+            service.addNota(nota, "sss");
             Assertions.assertTrue(true);
         }
         catch (Exception e){

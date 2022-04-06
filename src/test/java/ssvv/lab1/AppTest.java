@@ -1,6 +1,7 @@
 package ssvv.lab1;
 
 import domain.Student;
+import domain.Tema;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -228,6 +229,5 @@ public class AppTest
 
         assertTrue(actualMessage.contains(expectedMessage));
     }
-
 
 }
