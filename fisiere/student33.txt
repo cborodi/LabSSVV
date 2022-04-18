@@ -4,3 +4,15 @@ Nota: 6.5
 Predata in saptamana: 6
 Deadline: 5
 Feedback: sss
+
+Tema: id2
+Nota: 9.0
+Predata in saptamana: 7
+Deadline: 5
+Feedback: sss
+
+Tema: id2
+Nota: 9.0
+Predata in saptamana: 7
+Deadline: 5
+Feedback: sss
